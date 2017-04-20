@@ -1,0 +1,23 @@
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+#marquee
+{
+  height: 75px;
+}
+#left
+{
+	position: absolute;
+	top:808px;
+	left:0px;
+}
+#container2
+{
+	position: relative;
+	top:10px;
+	
+}

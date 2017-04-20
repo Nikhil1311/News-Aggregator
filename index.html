@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>News</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script src="index.js"> </script>
+	<style>
+	#tab
+	{
+		  position: absolute;
+    	top: 40px;
+    	left: 478px;
+    	width:195px;
+    	border: 1px solid black;
+	}
+	
+  #container
+  {
+    border:1px solid black;
+  }
+  .result
+  {
+    border:none;
+    background-color:grey;
+    display:block;
+  }
+  a
+{
+  text-decoration:None;
+  color:#f5f6f5; 
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+  .result:hover
+  {
+    background-color:white;
+    display:block;
+  }
+
+  #tab
+  {
+        position: absolute;
+      top: 40px;
+      left: 480px;
+      width:195px;
+      border: 1px solid black;
+  }
+  .navbar
+  {
+    background-color: #211c39;
+    margin-bottom: 0;
+  }
+  .marquee, #marquee-content
+  {
+    background-color: #55839a;
+    color: #eee9e5;
+    font-size: 14pt;
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  a:hover
+  {
+    text-decoration: None;
+  }
+  a.marq
+  {
+    text-decoration: None;
+    color: #eee9e5;
+  }
+  body
+  {
+    background-color: #f5f6f5;
+  }
+  #s
+  {
+    background-color: #23cbec;
+  }
+  #b
+  {
+    background-color: #55839a;
+  }
+  #e
+  {
+    background-color: #747587;
+  }
+
+
+  
+	</style>
+	</head>
+<body onload="init()">
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">News</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li>
+	    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="#">Cricket</a></li>
+	          <li><a href="#">Football</a></li>
+	          <li><a href="#">Tennis</a></li>
+	        </ul>
+      	</li>
+      	<li>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Business
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Indian Business</a></li>
+          <li><a href="business/index.html">International Business</a></li>
+        </ul>
+      	</li>
+      	<li>
+      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Entertainment
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Hindi</a></li>
+          <li><a href="#">Kannada</a></li>
+        </ul>
+      </li>
+      </ul>
+      <form class="navbar-form navbar-left" action="trial1.php" method="GET" id="form1">
+  		<div class="input-group">
+    		<input type="text" class="form-control" placeholder="Search" autocomplete="off" onkeyup="obj.getFood()" name="search" id="search123">
+    		<div class="input-group-btn">
+      			<button class="btn btn-default" onclick="submitquery(); return false;">
+        		<i class="glyphicon glyphicon-search"></i>
+      			</button>
+    		</div>
+  		</div>
+	   </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="signup/index.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="signup/index.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="marquee">
+  <div class="container-fluid">
+    <div id="marquee-content">
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-9" id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+    <li data-target="#myCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active" id="img1">
+      
+    </div>
+
+    <div class="item" id="img2">
+      
+    </div>
+
+    <div class="item" id="img3">
+      
+    </div>
+
+    <div class="item" id="img4">
+      
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<div class="col-sm-3" id="twitter" >
+	<a class="twitter-timeline" data-height = "525" href="https://twitter.com/palafo/lists/breakingnews">A Twitter List by palafo</a>
+</div>
+<div class ="container-fluid">
+    <div class="row">
+        <div class="col-sm-4" id="s">
+
+        <h3 id="sports_content"> Sports  </h3>
+        <div>
+<a href="http://timesofindia.indiatimes.com/sports/cricket/ipl/top-stories/two-hat-tricks-in-a-day-tye-badree-make-ipl-history/articleshow/58184834.cms">
+  <h2>Two hat-tricks in a day: Tye, Badree make IPL history</h2>
+</div>
+        <div>
+  <a href="http://timesofindia.indiatimes.com/sports/badminton/singapore-open-pv-sindhu-loses-to-carolina-marin-b-sai-praneeth-into-semis/articleshow/58181084.cms"><h2>Singapore Open: Sindhu loses to Marin; Praneeth, Srikanth in semis</h2>
+</div>
+
+        </div>
+        <div class="col-sm-4" id="b">
+
+        <h3 id="business_content"> Business </h3>
+        <div>
+  <a href="http://timesofindia.indiatimes.com/business/india-business/bajaj-auto-loses-ground-since-exiting-scooters-in-2010/articleshow/58188869.cms"><h2>Bajaj Auto loses ground since exiting scooters in 2010</h2>
+
+  <a href="http://timesofindia.indiatimes.com/business/international-business/u-s-retail-sales-inflation-data-highlight-weak-first-quarter-growth/articleshow/58184773.cms"><h2>U.S. retail sales, inflation data highlight weak first-quarter growth</h2>
+</div>
+
+        </div>
+        <div class="col-sm-4" id="e">
+
+        <h3 id="entertainment_content"> Entertainment </h3>
+        <div>
+  <a href="http://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/kabir-khan-reveals-tubelight-trailer-is-just-weeks-away-from-releasing/articleshow/58181028.cms"><h2>Kabir Khan reveals ‘Tubelight’ trailer is just weeks away from releasing</h2>
+</div>
+<div>
+  <a href="#"><h2>Fast & Furious 8 Movie Review &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
+</div>
+
+        </div>
+    </div>
+</div>
+    
+</div>
+    
+    
+    
+    
+</div>
+	<table border="0" cellpadding="0" id="tab">
+
+			<tr><td></td><td><div id="container2"></div></td></tr>
+		
+		
+	</table>
+		
+</body>
+</html>

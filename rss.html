@@ -1,0 +1,27 @@
+	<html>
+
+	<head>
+	<script>
+		function init()
+		{
+				xhr = new XMLHttpRequest();
+				xhr.open("GET","rss.php",true);
+				xhr.send();
+				xhr.onreadystatechange=putrss;
+		}
+		function putrss()
+		{
+				var mar = document.getElementById("feed")
+				mar.innerHTML = xhr.responseText;
+		}
+	</script>
+	</head>
+	
+	<body onload="init()">
+		<div id="feed">
+		
+		</div>
+	
+	</body>
+	
+	</html>

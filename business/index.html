@@ -1,0 +1,174 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>News</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="assets/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	<script>
+	old_value = 0;
+	var obj={
+		monitor:function(){
+			var ev=new EventSource("sse.php")
+			ev.addEventListener("updated",obj.update,false);
+			ev.onerror=function(){alert("Connection lost to stocks")}
+		},
+		update:function(event){
+			var d=document.getElementById("stock-price");
+			console.log(event.data)
+			var new_value = parseInt(event.data);
+			var change = -1;
+			var str = " up";
+			if (new_value > old_value)
+			{
+				change = new_value - old_value;
+				d.style = "color:green"
+				str = " up";
+			}
+			else if(new_value < old_value)
+			{
+				change = old_value - new_value;
+				d.style = "color:red"	
+				str = " down"
+			}
+			old_value = new_value;
+			d.innerHTML=new_value + " (" + change+str+")" 
+		}
+
+
+	}
+	</script>
+	<style>
+	#tab
+	{
+		    position: absolute;
+    	top: 40px;
+    	left: 480px;
+    	width:195px;
+    	border: 1px solid black;
+	}
+	.navbar
+	{
+		background-color: #211c39;
+		margin-bottom: 0;
+	}
+	.marquee, #marquee-content
+	{
+		background-color: #788085;
+		color: #eee9e5;
+		font-size: 14pt;
+		text-align: center;
+		font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	a.marq
+	{
+		text-decoration: None;
+		color: #eee9e5;
+	}
+	body
+	{
+		background-color: #dfded0;
+	}
+	  a
+{
+  text-decoration:None;
+  color:#211c39; 
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+	  a:hover
+  {
+    text-decoration: None;
+  }
+
+
+	</style>
+	</head>
+<body onload="obj.monitor()">
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">News</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li>
+	    	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Sports
+	        <span class="caret"></span></a>
+	        <ul class="dropdown-menu">
+	          <li><a href="#">Cricket</a></li>
+	          <li><a href="#">Football</a></li>
+	          <li><a href="#">Tennis</a></li>
+	        </ul>
+      	</li>
+      	<li class="active">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Business
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Indian Business</a></li>
+          <li><a href="#">International Business</a></li>
+        </ul>
+      	</li>
+      	<li>
+      	<a class="dropdown-toggle" data-toggle="dropdown" href="#">Entertainment
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Hindi</a></li>
+          <li><a href="#">Kannada</a></li>
+        </ul>
+      </li>
+      </ul>
+      <form class="navbar-form navbar-left" action="trial1.php" method="GET" id="form1">
+  		<div class="input-group">
+    		<input type="text" class="form-control" placeholder="Search" onkeyup="suggest()" name="search" id="search123">
+    		<div class="input-group-btn">
+      			<button class="btn btn-default" onclick="submitquery(); return false;">
+        		<i class="glyphicon glyphicon-search"></i>
+      			</button>
+    		</div>
+  		</div>
+	   </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="col-sm-8" id="b">
+	<div class="container-fluid">
+		<div id = "target">
+			<h2> Recent News </h2>
+
+</div>
+  <a href="http://timesofindia.indiatimes.com/business/international-business/u-s-retail-sales-inflation-data-highlight-weak-first-quarter-growth/articleshow/58184773.cms"><h2>U.S. retail sales, inflation data highlight weak first-quarter growth</h2>
+
+<a href="http://timesofindia.indiatimes.com/business/international-business/hsbc-to-pay-2-mln-to-resolve-u-s-civil-loan-fraud-lawsuit/articleshow/58187278.cms"><h2>HSBC to pay $2 mln to resolve U.S. civil loan fraud lawsuit</h2>
+</div>
+		</div>
+	</div>
+</div>
+
+<div class = "col-sm-4" id="s">
+	<h2> Stocks </h2>
+	<div class="w3-card col-sm-3"id="e">
+		<p> Nvidia </p>
+	<p id = "stock-price"> - </p>
+	</div>
+</div>
+</body>
+</html>
